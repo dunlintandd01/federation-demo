@@ -1,8 +1,9 @@
 ## Condition Cover
 
 * micro-service expand data model
-* control expose fields
+* authenticate
 
 ## Questions
 
 * multiple server restart
+* custom schema directives
