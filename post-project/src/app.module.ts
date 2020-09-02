@@ -13,6 +13,12 @@ import { User } from './user.entity';
       buildSchemaOptions: {
         orphanedTypes: [User],
       },
+      context: ({ req }) => {
+        return {
+          jwt: req.headers.authorization,
+          requestId: req.requestId,
+        };
+      },
     }),
   ],
   providers: [PostsResolvers, PostsService],

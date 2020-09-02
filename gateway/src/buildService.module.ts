@@ -9,6 +9,8 @@ class AuthenticatedDataSource extends RemoteGraphQLDataSource {
       const { userId } = await decode(context.jwt);
       request.http.headers.set('x-user-id', userId);
     }
+    console.log('======================= context.requestId', context.requestId);
+    request.http.headers.set('request-id', context.requestId);
   }
 }
 
@@ -20,8 +22,10 @@ class AuthenticatedDataSource extends RemoteGraphQLDataSource {
     },
     {
       provide: GATEWAY_BUILD_SERVICE,
+      // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
       useFactory: AuthenticatedDataSource => {
-        return ({ name, url }) => new AuthenticatedDataSource({ url });
+        // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+        return ({ url }) => new AuthenticatedDataSource({ url });
       },
       inject: [AuthenticatedDataSource],
     },

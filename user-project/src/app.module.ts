@@ -9,6 +9,12 @@ import { join } from 'path';
     GraphQLFederationModule.forRoot({
       // typePaths: [join(process.cwd(), 'schema/user.graphql')],
       autoSchemaFile: join(process.cwd(), `schema/userCodeFirst.graphql`),
+      context: ({ req }) => {
+        return {
+          jwt: req.headers.authorization,
+          requestId: req.requestId,
+        };
+      },
     }),
   ],
   providers: [UsersResolvers, UsersService],

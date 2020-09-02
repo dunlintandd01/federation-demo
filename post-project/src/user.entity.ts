@@ -11,8 +11,4 @@ export class User {
 
   @Field(type => [Post])
   public posts: Post[];
-
-  // constructor(post: Partial<User>) {
-  //   Object.assign(this, post);
-  // }
 }

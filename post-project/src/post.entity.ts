@@ -15,6 +15,10 @@ export class Post {
   @Field(type => String)
   userId: string;
 
+  // @Field(type => String, { nullable: true })
+  // @Directive('@include(if: withComment)')
+  comment?: string;
+
   constructor(post: Partial<Post>) {
     Object.assign(this, post);
   }

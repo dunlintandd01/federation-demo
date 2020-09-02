@@ -1,4 +1,11 @@
-import { Args, Query, Resolver, Parent, ResolveField } from '@nestjs/graphql';
+import {
+  Args,
+  Query,
+  Resolver,
+  Parent,
+  ResolveField,
+  Context,
+} from '@nestjs/graphql';
 import { PostsService } from './posts.service';
 import { Post as IPost } from './posts.interfaces';
 import { Post } from './post.entity';
@@ -26,7 +33,7 @@ export class PostsResolvers {
 
   // @ResolveProperty('user')
   @ResolveField('user', () => User)
-  getUser(@Parent() post: IPost) {
+  getUser(@Parent() post: IPost, @Context() ctx: any) {
     return { __typename: 'User', id: post.userId };
   }
 }
